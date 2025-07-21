@@ -11,7 +11,7 @@ import (
 )
 
 func (p *Profile) CreateProfile(ctx context.Context, name string, age int, email string) (uuid.UUID, error) {
-	// Проверяем в Redis ключу идемпотентности
+	// Проверяем в Redis ключ идемпотентности
 	if p.redis.IsExists(ctx, name+email) {
 		return uuid.Nil, domain.ErrAlreadyExists
 	}
